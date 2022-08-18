@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta(charset='utf-8')-->
+    <!-- title: !=title-->
+    <style>
+      <!--include ./node_modules/primer-css/build/build.css-->/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="markdown-body"><hr>
+<h2>layout: docs
+title: Color
+description: Bootstrap is supported by an extensive color system that themes our styles and components. This enables more comprehensive customization and extension for any project.
+group: customize
+toc: true</h2>
+<h2>Theme colors</h2>
+<p>We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in Bootstrap's <code>scss/_variables.scss</code> file.</p>
+<p>&lt;div class=&quot;row&quot;&gt;
+{{&lt; theme-colors.inline &gt;}}
+{{- range (index $.Site.Data &quot;theme-colors&quot;) }}
+&lt;div class=&quot;col-md-4&quot;&gt;
+&lt;div class=&quot;p-3 mb-3 bg-{{ .name }} {{ if .contrast_color }}text-{{ .contrast_color }}{{ else }}text-white{{ end }}&quot;&gt;{{ .name | title }}&lt;/div&gt;
+&lt;/div&gt;
+{{ end -}}
+{{&lt; /theme-colors.inline &gt;}}
+&lt;/div&gt;</p>
+<p>All these colors are available as a Sass map, <code>$theme-colors</code>.</p>
+<p>{{&lt; scss-docs name=&quot;theme-colors-map&quot; file=&quot;scss/_variables.scss&quot; &gt;}}</p>
+<p>Check out [our Sass maps and loops docs]({{&lt; docsref &quot;/customize/sass#maps-and-loops&quot; &gt;}}) for how to modify these colors.</p>
+<h2>All colors</h2>
+<p>All Bootstrap colors are available as Sass variables and a Sass map in <code>scss/_variables.scss</code> file. To avoid increased file sizes, we don't create text or background color classes for each of these variables. Instead, we choose a subset of these colors for a <a href="#theme-colors">theme palette</a>.</p>
+<p>Be sure to monitor contrast ratios as you customize colors. As shown below, we've added three contrast ratios to each of the main colors—one for the swatch's current colors, one for against white, and one for against black.</p>
+<p>&lt;div class=&quot;row font-monospace&quot;&gt;
+{{&lt; theme-colors.inline &gt;}}
+{{- range $color := $.Site.Data.colors }}
+{{- if (and (not (eq $color.name &quot;white&quot;)) (not (eq $color.name &quot;gray&quot;)) (not (eq $color.name &quot;gray-dark&quot;))) }}
+&lt;div class=&quot;col-md-4 mb-3&quot;&gt;
+&lt;div class=&quot;p-3 mb-2 position-relative swatch-{{ $color.name }}&quot;&gt;
+&lt;strong class=&quot;d-block&quot;&gt;${{ $color.name }}&lt;/strong&gt;
+{{ $color.hex }}
+&lt;/div&gt;
+{{ range (seq 100 100 900) }}
+&lt;div class=&quot;p-3 bd-{{ $color.name }}-{{ . }}&quot;&gt;${{ $color.name }}-{{ . }}&lt;/div&gt;
+{{ end }}
+&lt;/div&gt;
+{{ end -}}
+{{ end -}}</p>
+<p>&lt;div class=&quot;col-md-4 mb-3&quot;&gt;
+&lt;div class=&quot;p-3 mb-2 position-relative swatch-gray-500&quot;&gt;
+&lt;strong class=&quot;d-block&quot;&gt;$gray-500&lt;/strong&gt;
+#adb5bd
+&lt;/div&gt;
+{{- range $.Site.Data.grays }}
+&lt;div class=&quot;p-3 bd-gray-{{ .name }}&quot;&gt;$gray-{{ .name }}&lt;/div&gt;
+{{ end -}}
+&lt;/div&gt;
+{{&lt; /theme-colors.inline &gt;}}</p>
+<p>&lt;div class=&quot;col-md-4 mb-3&quot;&gt;
+&lt;div class=&quot;p-3 mb-2 bd-black text-white&quot;&gt;
+&lt;strong class=&quot;d-block&quot;&gt;$black&lt;/strong&gt;
+#000
+&lt;/div&gt;
+&lt;div class=&quot;p-3 mb-2 bd-white border&quot;&gt;
+&lt;strong class=&quot;d-block&quot;&gt;$white&lt;/strong&gt;
+#fff
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</p>
+<h3>Notes on Sass</h3>
+<p>Sass cannot programmatically generate variables, so we manually created variables for every tint and shade ourselves. We specify the midpoint value (e.g., <code>$blue-500</code>) and use custom color functions to tint (lighten) or shade (darken) our colors via Sass's <code>mix()</code> color function.</p>
+<p>Using <code>mix()</code> is not the same as <code>lighten()</code> and <code>darken()</code>—the former blends the specified color with white or black, while the latter only adjusts the lightness value of each color. The result is a much more complete suite of colors, as <a href="https://codepen.io/emdeoh/pen/zYOQOPB">shown in this CodePen demo</a>.</p>
+<p>Our <code>tint-color()</code> and <code>shade-color()</code> functions use <code>mix()</code> alongside our <code>$theme-color-interval</code> variable, which specifies a stepped percentage value for each mixed color we produce. See the <code>scss/_functions.scss</code> and <code>scss/_variables.scss</code> files for the full source code.</p>
+<h2>Color Sass maps</h2>
+<p>Bootstrap's source Sass files include three maps to help you quickly and easily loop over a list of colors and their hex values.</p>
+<ul>
+<li><code>$colors</code> lists all our available base (<code>500</code>) colors</li>
+<li><code>$theme-colors</code> lists all semantically named theme colors (shown below)</li>
+<li><code>$grays</code> lists all tints and shades of gray</li>
+</ul>
+<p>Within <code>scss/_variables.scss</code>, you'll find Bootstrap's color variables and Sass map. Here's an example of the <code>$colors</code> Sass map:</p>
+<p>{{&lt; scss-docs name=&quot;colors-map&quot; file=&quot;scss/_variables.scss&quot; &gt;}}</p>
+<p>Add, remove, or modify values within the map to update how they're used in many other components. Unfortunately at this time, not <em>every</em> component utilizes this Sass map. Future updates will strive to improve upon this. Until then, plan on making use of the <code>${color}</code> variables and this Sass map.</p>
+<h3>Example</h3>
+<p>Here's how you can use these in your Sass:</p>
+<pre><code class="hljs scss"><span class="hljs-selector-class">.alpha</span> { <span class="hljs-attribute">color</span>: <span class="hljs-variable">$purple</span>; }
+<span class="hljs-selector-class">.beta</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-variable">$yellow-300</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-variable">$indigo-900</span>;
+}
+</code></pre>
+<p>[Color]({{&lt; docsref &quot;/utilities/colors&quot; &gt;}}) and [background]({{&lt; docsref &quot;/utilities/background&quot; &gt;}}) utility classes are also available for setting <code>color</code> and <code>background-color</code> using the <code>500</code> color values.</p>
+<h2>Generating utilities</h2>
+<p>{{&lt; added-in &quot;5.1.0&quot; &gt;}}</p>
+<p>Bootstrap doesn't include <code>color</code> and <code>background-color</code> utilities for every color variable, but you can generate these yourself with our [utility API]({{&lt; docsref &quot;/utilities/api&quot; &gt;}}) and our extended Sass maps added in v5.1.0.</p>
+<ol>
+<li>To start, make sure you've imported our functions, variables, mixins, and utilities.</li>
+<li>Use our <code>map-merge-multiple()</code> function to quickly merge multiple Sass maps together in a new map.</li>
+<li>Merge this new combined map to extend any utility with a <code>{color}-{level}</code> class name.</li>
+</ol>
+<p>Here's an example that generates text color utilities (e.g., <code>.text-purple-500</code>) using the above steps.</p>
+<pre><code class="hljs scss"><span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/functions"</span>;
+<span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/variables"</span>;
+<span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/maps"</span>;
+<span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/mixins"</span>;
+<span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/utilities"</span>;
+
+<span class="hljs-variable">$all-colors</span>: map-merge-multiple(<span class="hljs-variable">$blues</span>, <span class="hljs-variable">$indigos</span>, <span class="hljs-variable">$purples</span>, <span class="hljs-variable">$pinks</span>, <span class="hljs-variable">$reds</span>, <span class="hljs-variable">$oranges</span>, <span class="hljs-variable">$yellows</span>, <span class="hljs-variable">$greens</span>, <span class="hljs-variable">$teals</span>, <span class="hljs-variable">$cyans</span>);
+
+<span class="hljs-variable">$utilities</span>: map-merge(
+  <span class="hljs-variable">$utilities</span>,
+  (
+    <span class="hljs-string">"color"</span>: map-merge(
+      map-get(<span class="hljs-variable">$utilities</span>, <span class="hljs-string">"color"</span>),
+      (
+        values: map-merge(
+          map-get(map-get(<span class="hljs-variable">$utilities</span>, <span class="hljs-string">"color"</span>), <span class="hljs-string">"values"</span>),
+          (
+            <span class="hljs-variable">$all-colors</span>
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+<span class="hljs-keyword">@import</span> <span class="hljs-string">"bootstrap/scss/utilities/api"</span>;
+</code></pre>
+<p>This will generate new <code>.text-{color}-{level}</code> utilities for every color and level. You can do the same for any other utility and property as well.</p>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+  <h4>Set Download Site</h4>
+   <form action="/articles" method="post">
+    <label for="site[address]">Site Address:
+      <input type="text" name="site[address]" placeholder="Site Address">
+    </label>
+
+    <input type="submit" name="submit" value="Download">
+  </form>
+  <div ng-controller='AppCtrl'>
+    <h4>List site</h4>
+    <form ng-submit='sendDownload()'>
+      <div>Project name:
+           <input ng-model='projectName'></div>
+      <div>Site address: 
+            <input ng-model='site'></div>
+      <div>Current point: 
+            <input ng-model='currentPoint'></div>
+            <input type='submit', value='Send'>
+    </form>
+    <p ng-model='status'>Status:\{{status.index}}/\{{status.length}}</p>
+    <div class='overflowable'>
+    <p ng-repeat='site in sites'>\{{site.text}}</p>
+    </div>
+  </div>
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta(charset='utf-8')-->
+    <!-- title: !=title-->
+    <style>
+      <!--include ./node_modules/primer-css/build/build.css-->/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="markdown-body"><hr>
+<p>layout: docs
+title: Forms
+description: Examples and usage guidelines for form control styles, layout options, and custom components for creating a wide variety of forms.
+group: forms
+toc: true
+aliases: &quot;/docs/5.2/forms/&quot;
+sections:</p>
+<ul>
+<li>title: Form control
+description: Style textual inputs and textareas with support for multiple states.</li>
+<li>title: Select
+description: Improve browser default select elements with a custom initial appearance.</li>
+<li>title: Checks &amp; radios
+description: Use our custom radio buttons and checkboxes in forms for selecting input options.</li>
+<li>title: Range
+description: Replace browser default range inputs with our custom version.</li>
+<li>title: Input group
+description: Attach labels and buttons to your inputs for increased semantic value.</li>
+<li>title: Floating labels
+description: Create beautifully simple form labels that float over your input fields.</li>
+<li>title: Layout
+description: Create inline, horizontal, or complex grid-based layouts with your forms.</li>
+<li>title: Validation
+description: Validate your forms with custom or native validation behaviors and styles.</li>
+</ul>
+<hr>
+<h2>Overview</h2>
+<p>Bootstrap's form controls expand on [our Rebooted form styles]({{&lt; docsref &quot;/content/reboot#forms&quot; &gt;}}) with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.</p>
+<p>Be sure to use an appropriate <code>type</code> attribute on all inputs (e.g., <code>email</code> for email address or <code>number</code> for numerical information) to take advantage of newer input controls like email verification, number selection, and more.</p>
+<p>Here's a quick example to demonstrate Bootstrap's form styles. Keep reading for documentation on required classes, form layout, and more.</p>
+<p>{{&lt; example &gt;}}
+&lt;form&gt;
+&lt;div class=&quot;mb-3&quot;&gt;
+&lt;label for=&quot;exampleInputEmail1&quot; class=&quot;form-label&quot;&gt;Email address&lt;/label&gt;
+&lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;exampleInputEmail1&quot; aria-describedby=&quot;emailHelp&quot;&gt;
+&lt;div id=&quot;emailHelp&quot; class=&quot;form-text&quot;&gt;We'll never share your email with anyone else.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;mb-3&quot;&gt;
+&lt;label for=&quot;exampleInputPassword1&quot; class=&quot;form-label&quot;&gt;Password&lt;/label&gt;
+&lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;exampleInputPassword1&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;mb-3 form-check&quot;&gt;
+&lt;input type=&quot;checkbox&quot; class=&quot;form-check-input&quot; id=&quot;exampleCheck1&quot;&gt;
+&lt;label class=&quot;form-check-label&quot; for=&quot;exampleCheck1&quot;&gt;Check me out&lt;/label&gt;
+&lt;/div&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+{{&lt; /example &gt;}}</p>
+<h2>Form text</h2>
+<p>Block-level or inline-level form text can be created using <code>.form-text</code>.</p>
+<p>{{&lt; callout warning &gt;}}</p>
+<h5>Associating form text with form controls</h5>
+<p>Form text should be explicitly associated with the form control it relates to using the <code>aria-describedby</code> attribute. This will ensure that assistive technologies—such as screen readers—will announce this form text when the user focuses or enters the control.
+{{&lt; /callout &gt;}}</p>
+<p>Form text below inputs can be styled with <code>.form-text</code>. If a block-level element will be used, a top margin is added for easy spacing from the inputs above.</p>
+<p>{{&lt; example &gt;}}
+&lt;label for=&quot;inputPassword5&quot; class=&quot;form-label&quot;&gt;Password&lt;/label&gt;
+&lt;input type=&quot;password&quot; id=&quot;inputPassword5&quot; class=&quot;form-control&quot; aria-describedby=&quot;passwordHelpBlock&quot;&gt;
+&lt;div id=&quot;passwordHelpBlock&quot; class=&quot;form-text&quot;&gt;
+Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+&lt;/div&gt;
+{{&lt; /example &gt;}}</p>
+<p>Inline text can use any typical inline HTML element (be it a <code>&lt;span&gt;</code>, <code>&lt;small&gt;</code>, or something else) with nothing more than the <code>.form-text</code> class.</p>
+<p>{{&lt; example &gt;}}
+&lt;div class=&quot;row g-3 align-items-center&quot;&gt;
+&lt;div class=&quot;col-auto&quot;&gt;
+&lt;label for=&quot;inputPassword6&quot; class=&quot;col-form-label&quot;&gt;Password&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-auto&quot;&gt;
+&lt;input type=&quot;password&quot; id=&quot;inputPassword6&quot; class=&quot;form-control&quot; aria-describedby=&quot;passwordHelpInline&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-auto&quot;&gt;
+&lt;span id=&quot;passwordHelpInline&quot; class=&quot;form-text&quot;&gt;
+Must be 8-20 characters long.
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{&lt; /example &gt;}}</p>
+<h2>Disabled forms</h2>
+<p>Add the <code>disabled</code> boolean attribute on an input to prevent user interactions and make it appear lighter.</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"disabledInput"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Disabled input here..."</span> <span class="hljs-attr">disabled</span>&gt;</span>
+</code></pre>
+<p>Add the <code>disabled</code> attribute to a <code>&lt;fieldset&gt;</code> to disable all the controls within. Browsers treat all native form controls (<code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, and <code>&lt;button&gt;</code> elements) inside a <code>&lt;fieldset disabled&gt;</code> as disabled, preventing both keyboard and mouse interactions on them.</p>
+<p>However, if your form also includes custom button-like elements such as <code>&lt;a class=&quot;btn btn-*&quot;&gt;...&lt;/a&gt;</code>, these will only be given a style of <code>pointer-events: none</code>, meaning they are still focusable and operable using the keyboard. In this case, you must manually modify these controls by adding <code>tabindex=&quot;-1&quot;</code> to prevent them from receiving focus and <code>aria-disabled=&quot;disabled&quot;</code> to signal their state to assistive technologies.</p>
+<p>{{&lt; example &gt;}}
+&lt;form&gt;
+&lt;fieldset disabled&gt;
+&lt;legend&gt;Disabled fieldset example&lt;/legend&gt;
+&lt;div class=&quot;mb-3&quot;&gt;
+&lt;label for=&quot;disabledTextInput&quot; class=&quot;form-label&quot;&gt;Disabled input&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;disabledTextInput&quot; class=&quot;form-control&quot; placeholder=&quot;Disabled input&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;mb-3&quot;&gt;
+&lt;label for=&quot;disabledSelect&quot; class=&quot;form-label&quot;&gt;Disabled select menu&lt;/label&gt;
+&lt;select id=&quot;disabledSelect&quot; class=&quot;form-select&quot;&gt;
+&lt;option&gt;Disabled select&lt;/option&gt;
+&lt;/select&gt;
+&lt;/div&gt;
+&lt;div class=&quot;mb-3&quot;&gt;
+&lt;div class=&quot;form-check&quot;&gt;
+&lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;disabledFieldsetCheck&quot; disabled&gt;
+&lt;label class=&quot;form-check-label&quot; for=&quot;disabledFieldsetCheck&quot;&gt;
+Can't check this
+&lt;/label&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit&lt;/button&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;
+{{&lt; /example &gt;}}</p>
+<h2>Accessibility</h2>
+<p>Ensure that all form controls have an appropriate accessible name so that their purpose can be conveyed to users of assistive technologies. The simplest way to achieve this is to use a <code>&lt;label&gt;</code> element, or—in the case of buttons—to include sufficiently descriptive text as part of the <code>&lt;button&gt;...&lt;/button&gt;</code> content.</p>
+<p>For situations where it's not possible to include a visible <code>&lt;label&gt;</code> or appropriate text content, there are alternative ways of still providing an accessible name, such as:</p>
+<ul>
+<li><code>&lt;label&gt;</code> elements hidden using the <code>.visually-hidden</code> class</li>
+<li>Pointing to an existing element that can act as a label using <code>aria-labelledby</code></li>
+<li>Providing a <code>title</code> attribute</li>
+<li>Explicitly setting the accessible name on an element using <code>aria-label</code></li>
+</ul>
+<p>If none of these are present, assistive technologies may resort to using the <code>placeholder</code> attribute as a fallback for the accessible name on <code>&lt;input&gt;</code> and <code>&lt;textarea&gt;</code> elements. The examples in this section provide a few suggested, case-specific approaches.</p>
+<p>While using visually hidden content (<code>.visually-hidden</code>, <code>aria-label</code>, and even <code>placeholder</code> content, which disappears once a form field has content) will benefit assistive technology users, a lack of visible label text may still be problematic for certain users. Some form of visible label is generally the best approach, both for accessibility and usability.</p>
+<h2>Sass</h2>
+<p>Many form variables are set at a general level to be re-used and extended by individual form components. You'll see these most often as <code>$input-btn-*</code> and <code>$input-*</code> variables.</p>
+<h3>Variables</h3>
+<p><code>$input-btn-*</code> variables are shared global variables between our [buttons]({{&lt; docsref &quot;/components/buttons&quot; &gt;}}) and our form components. You'll find these frequently reassigned as values to other component-specific variables.</p>
+<p>{{&lt; scss-docs name=&quot;input-btn-variables&quot; file=&quot;scss/_variables.scss&quot; &gt;}}</p>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <title>Download-sites</title>
+</head>
+<body>
+  <h1>Download-sites</h1>
+  <p>Chỉ ở thuvienhoasend.org</p>
+    <form action="/site/0/edit?_method=put" method="get">
+    <label for="site[address]">Site Address:
+      <input type="text" name="site[address]" placeholder="site address">
+    </label>
+
+    <input type="submit" name="submit" value="Download-now">
+    </form>
+  <ul>
+    {{#each users}}
+      <li><a href="/user/{{id}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</body>
+</html>

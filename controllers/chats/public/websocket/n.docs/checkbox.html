@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+
+	<div><input type="checkbox" n-bind='checkme' checked></div>
+	<div><input type="checkbox" n-bind='checkme' ></div>
+	<div n-bind='checkme'></div>
+	<hr>
+
+    <label>
+       User name: 
+       <input type="text" name="userName" n-bind="username" required>
+       <div n-bind='username'></div>
+    </label>
+    <hr>
+<label>Email:
+      <input type="email" name="input" ng-model="email.text" required>
+    </label>
+    <hr>
+<input id="exampleInput" type="month" name="input" ng-model="example.value"
+     placeholder="yyyy-MM" min="2013-01" max="2013-12" required />
+
+<hr>
+     <label>Value1:
+    <input type="checkbox" ng-model="checkboxModel.value1">
+  </label><br/>
+  <label>Value2:
+    <input type="checkbox" ng-model="checkboxModel.value2"
+           ng-true-value="'YES'" ng-false-value="'NO'">
+   </label><br/>
+  <tt>value1 = {{checkboxModel.value1}}</tt><br/>
+  <tt>value2 = {{checkboxModel.value2}}</tt><br/>
+<hr>
+    <input type="datetime-local" id="exampleInput" name="input" ng-model="example.value"
+      placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2013-12-31T00:00:00" required />
+<hr>
+
+<div>
+	
+<label>Check me to select: <input type="checkbox" ng-model="selected"></label><br/>
+<select aria-label="ngSelected demo">
+  <option>Hello!</option>
+  <option id="greet" ng-selected="selected">Greetings!</option>
+</select>
+</div>
+<hr>
+    <label for="multipleSelect"> Multiple select: </label><br>
+    <select name="multipleSelect" id="multipleSelect" ng-model="data.multipleSelect" multiple>
+      <option value="option-1">Option 1</option>
+      <option value="option-2">Option 2</option>
+      <option value="option-3">Option 3</option>
+    </select><br>
+    <tt>multipleSelect = {{data.multipleSelect}}</tt><br/>
+
+<script type="text/javascript" src='js/n.js'></script>
+</body>
+</html>

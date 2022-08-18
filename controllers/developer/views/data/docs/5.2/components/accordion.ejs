@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta(charset='utf-8')-->
+    <!-- title: !=title-->
+    <style>
+      <!--include ./node_modules/primer-css/build/build.css-->/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="markdown-body"><hr>
+<p>layout: docs
+title: Accordion
+description: Build vertically collapsing accordions in combination with our Collapse JavaScript plugin.
+group: components
+aliases:</p>
+<ul>
+<li>&quot;/components/&quot;</li>
+<li>&quot;/docs/5.2/components/&quot;
+toc: true</li>
+</ul>
+<hr>
+<h2>How it works</h2>
+<p>The accordion uses [collapse]({{&lt; docsref &quot;/components/collapse&quot; &gt;}}) internally to make it collapsible. To render an accordion that's expanded, add the <code>.open</code> class on the <code>.accordion</code>.</p>
+<p>{{&lt; callout info &gt;}}
+{{&lt; partial &quot;callout-info-prefersreducedmotion.md&quot; &gt;}}
+{{&lt; /callout &gt;}}</p>
+<h2>Example</h2>
+<p>Click the accordions below to expand/collapse the accordion content.</p>
+<p>{{&lt; example &gt;}}
+&lt;div class=&quot;accordion&quot; id=&quot;accordionExample&quot;&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;headingOne&quot;&gt;
+&lt;button class=&quot;accordion-button&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#collapseOne&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;collapseOne&quot;&gt;
+Accordion Item #1
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;collapseOne&quot; class=&quot;accordion-collapse collapse show&quot; aria-labelledby=&quot;headingOne&quot; data-bs-parent=&quot;#accordionExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the first item's accordion body.&lt;/strong&gt; It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;headingTwo&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#collapseTwo&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;collapseTwo&quot;&gt;
+Accordion Item #2
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;collapseTwo&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;headingTwo&quot; data-bs-parent=&quot;#accordionExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the second item's accordion body.&lt;/strong&gt; It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;headingThree&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#collapseThree&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;collapseThree&quot;&gt;
+Accordion Item #3
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;collapseThree&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;headingThree&quot; data-bs-parent=&quot;#accordionExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the third item's accordion body.&lt;/strong&gt; It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{&lt; /example &gt;}}</p>
+<h3>Flush</h3>
+<p>Add <code>.accordion-flush</code> to remove the default <code>background-color</code>, some borders, and some rounded corners to render accordions edge-to-edge with their parent container.</p>
+<p>{{&lt; example class=&quot;bg-light&quot; &gt;}}
+&lt;div class=&quot;accordion accordion-flush&quot; id=&quot;accordionFlushExample&quot;&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;flush-headingOne&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#flush-collapseOne&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;flush-collapseOne&quot;&gt;
+Accordion Item #1
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;flush-collapseOne&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;flush-headingOne&quot; data-bs-parent=&quot;#accordionFlushExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;Placeholder content for this accordion, which is intended to demonstrate the &lt;code&gt;.accordion-flush&lt;/code&gt; class. This is the first item's accordion body.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;flush-headingTwo&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#flush-collapseTwo&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;flush-collapseTwo&quot;&gt;
+Accordion Item #2
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;flush-collapseTwo&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;flush-headingTwo&quot; data-bs-parent=&quot;#accordionFlushExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;Placeholder content for this accordion, which is intended to demonstrate the &lt;code&gt;.accordion-flush&lt;/code&gt; class. This is the second item's accordion body. Let's imagine this being filled with some actual content.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;flush-headingThree&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#flush-collapseThree&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;flush-collapseThree&quot;&gt;
+Accordion Item #3
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;flush-collapseThree&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;flush-headingThree&quot; data-bs-parent=&quot;#accordionFlushExample&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;Placeholder content for this accordion, which is intended to demonstrate the &lt;code&gt;.accordion-flush&lt;/code&gt; class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{&lt; /example &gt;}}</p>
+<h3>Always open</h3>
+<p>Omit the <code>data-bs-parent</code> attribute on each <code>.accordion-collapse</code> to make accordion items stay open when another item is opened.</p>
+<p>{{&lt; example &gt;}}
+&lt;div class=&quot;accordion&quot; id=&quot;accordionPanelsStayOpenExample&quot;&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;panelsStayOpen-headingOne&quot;&gt;
+&lt;button class=&quot;accordion-button&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#panelsStayOpen-collapseOne&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;panelsStayOpen-collapseOne&quot;&gt;
+Accordion Item #1
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;panelsStayOpen-collapseOne&quot; class=&quot;accordion-collapse collapse show&quot; aria-labelledby=&quot;panelsStayOpen-headingOne&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the first item's accordion body.&lt;/strong&gt; It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;panelsStayOpen-headingTwo&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#panelsStayOpen-collapseTwo&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;panelsStayOpen-collapseTwo&quot;&gt;
+Accordion Item #2
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;panelsStayOpen-collapseTwo&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;panelsStayOpen-headingTwo&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the second item's accordion body.&lt;/strong&gt; It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;accordion-item&quot;&gt;
+&lt;h2 class=&quot;accordion-header&quot; id=&quot;panelsStayOpen-headingThree&quot;&gt;
+&lt;button class=&quot;accordion-button collapsed&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#panelsStayOpen-collapseThree&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;panelsStayOpen-collapseThree&quot;&gt;
+Accordion Item #3
+&lt;/button&gt;
+&lt;/h2&gt;
+&lt;div id=&quot;panelsStayOpen-collapseThree&quot; class=&quot;accordion-collapse collapse&quot; aria-labelledby=&quot;panelsStayOpen-headingThree&quot;&gt;
+&lt;div class=&quot;accordion-body&quot;&gt;
+&lt;strong&gt;This is the third item's accordion body.&lt;/strong&gt; It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the &lt;code&gt;.accordion-body&lt;/code&gt;, though the transition does limit overflow.
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{&lt; /example &gt;}}</p>
+<h2>Accessibility</h2>
+<p>Please read the [collapse accessibility section]({{&lt; docsref &quot;/components/collapse#accessibility&quot; &gt;}}) for more information.</p>
+<h2>CSS</h2>
+<h3>Variables</h3>
+<p>{{&lt; added-in &quot;5.2.0&quot; &gt;}}</p>
+<p>As part of Bootstrap's evolving CSS variables approach, accordions now use local CSS variables on <code>.accordion</code> for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.</p>
+<p>{{&lt; scss-docs name=&quot;accordion-css-vars&quot; file=&quot;scss/_accordion.scss&quot; &gt;}}</p>
+<h3>Sass variables</h3>
+<p>{{&lt; scss-docs name=&quot;accordion-variables&quot; file=&quot;scss/_variables.scss&quot; &gt;}}</p>
+
+      </div>
+    </div>
+  </body>
+</html>

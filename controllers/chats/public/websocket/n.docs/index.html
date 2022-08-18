@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>n-bind</title>
+</head>
+<body>
+
+	<div>
+		4 cấp độ để thây đổi giá trị value	
+		<ol>
+		<li>từ window.console n.bind.name = 'hello' </li>
+		<li>từ javascript n.bind.name = 'hello' </li>
+		<li>từ input với value = 'hello' </li>
+		<li>từ thây đổi innerHtml 'hello' </li>
+		</ol>
+	</div>
+	<h1>trường hợp 1 input </h1>
+	<div><input type="text" n-bind='name' value='tr'></div>
+	<div n-bind='name'></div>
+	<div n-bind='name'></div>
+
+	<h1>trường hợp 2 input </h1>
+	<div><input type="text" name="" n-bind='tata' value="troi oi"></div>
+	<div><input type="text" name="" n-bind='tata' value="ba oi"></div>
+	<div n-bind='tata'></div>
+	<div n-bind='tata'></div>
+
+	<h1>n-Repeat </h1>
+	<ul n-repeat='list' data-n-template="<li onclick='clickme(event)'><span>{{$index}}</span> {{$value}}</li>"></ul>
+
+	<select n-repeat='list' onchange="n.bind.name=n.bind.list[event.target.value]" data-n-template="<option value='{{$index}}'>{{$value}}</option>">></select>
+<!-- 	<h1>trường hợp 3 input </h1>
+	<div><input type="checkbox" n-bind='ok' value="ba oi 3"></div>
+	<div>{ok}</div> -->
+
+
+<script type="text/javascript" src='../d.js'></script>
+<script type="text/javascript" src='../n.js'></script>
+<script type="text/javascript">
+	n.bind.list = [
+		// {id:0,name:'toi',c:' ta ra'},
+		// {id:1,name:'la', c:'go go' },
+		// {id:2,name:'ai', c:'lala'}
+		'toi','la','ai'
+	]
+	n.bind.name = 'ok'
+	n.bind.checkme = false
+	var clickme = (e)=>{
+		alert('e')
+	} 
+</script>
+</body>
+</html>

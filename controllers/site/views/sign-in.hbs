@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <title>sign-in</title>
+</head>
+<style>
+  .hidden{display: none;}
+</style>
+<body>
+  <h1>sign-in</h1>
+<div id='buttonDiv'></div>
+<div class="g_id_signout"><a href='#signOut' id='signOut' class='hidden'>Sign Out</a></div>
+<script src="/js/jwt-decode.js" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- <div id="g_id_onload"
+     data-client_id="563587575029-jk7upaett1dgftgi6fh7v9l3hlb01lbs.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="http://localhost:3000/site/signIn"
+     data-nonce="">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="rectangular"
+     data-theme="outline"
+     data-text="$ {button.text}"
+     data-size="large"
+     data-logo_alignment="left">
+</div> -->
+<script>
+        var button = document.getElementById('signOut');
+        function status() {
+          document.querySelector('#buttonDiv').classList.toggle('hidden')
+          button.classList.toggle('hidden')
+        }
+        function handleCredentialResponse(response) {
+
+          // var xhr = new XMLHttpRequest();
+          // xhr.open('POST', 'http://localhost:3000/signIn');
+          // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+          // xhr.onload = function() {
+          // console.log('Signed in as: ' + xhr.responseText);
+          // };
+          // xhr.send('idtoken=' + id_token);
+
+          //console.log("Encoded JWT ID token: " + response.credential);
+
+          // const responsePayload = decodeJwtResponse(response.credential);
+          const responsePayload = jwt_decode(response.credential);
+          console.log(responsePayload)
+          cookieStore.set('email',responsePayload.email)
+           // google.accounts.id.storeCredential(responsePayload, (o)=>{
+           //    console.log(o);
+           //  })
+
+          if(responsePayload.email_verified){
+            status()
+          }
+          // console.log("ID: " + responsePayload.sub);
+          // console.log('Full Name: ' + responsePayload.name);
+          // console.log('Given Name: ' + responsePayload.given_name);
+          // console.log('Family Name: ' + responsePayload.family_name);
+          // console.log("Image URL: " + responsePayload.picture);
+          // console.log("Email: " + responsePayload.email);
+        }
+        window.onload = function () {
+
+            onSignIn()
+
+        }
+
+        function onSignIn() {
+          cookieStore.get('email').then(a=>{
+            if(a){
+              console.log(a)
+              button.classList.toggle('hidden',false)
+              return;
+            }
+            button.classList.toggle('hidden',true)
+            google.accounts.id.initialize({
+              client_id: "563587575029-jk7upaett1dgftgi6fh7v9l3hlb01lbs.apps.googleusercontent.com",
+              callback: handleCredentialResponse,
+            });
+            google.accounts.id.renderButton(
+              document.getElementById("buttonDiv"),
+              { theme: "outline", size: "large" }  // customization attributes
+            );
+            google.accounts.id.prompt((notification) => {
+              console.log(notification);
+              // if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+              //   // continue with another identity provider.
+              // }
+            }); // also display the One Tap dialog
+
+          })
+          
+        }
+
+        
+        button.onclick = () => {
+            cookieStore.get('email').then(a=>{
+              console.log(a);
+              cookieStore.delete('email').then(r=>{
+                  onSignIn()
+              })
+            })
+            
+      
+          //google.accounts.id.disableAutoSelect();
+        }
+</script>
+
+</body>
+</html>

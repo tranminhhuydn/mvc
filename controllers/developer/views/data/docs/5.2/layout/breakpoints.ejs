@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta(charset='utf-8')-->
+    <!-- title: !=title-->
+    <style>
+      <!--include ./node_modules/primer-css/build/build.css-->/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="markdown-body"><hr>
+<h2>layout: docs
+title: Breakpoints
+description: Breakpoints are customizable widths that determine how your responsive layout behaves across device or viewport sizes in Bootstrap.
+group: layout
+aliases: &quot;/docs/5.2/layout/&quot;
+toc: true</h2>
+<h2>Core concepts</h2>
+<ul>
+<li>
+<p><strong>Breakpoints are the building blocks of responsive design.</strong> Use them to control when your layout can be adapted at a particular viewport or device size.</p>
+</li>
+<li>
+<p><strong>Use media queries to architect your CSS by breakpoint.</strong> Media queries are a feature of CSS that allow you to conditionally apply styles based on a set of browser and operating system parameters. We most commonly use <code>min-width</code> in our media queries.</p>
+</li>
+<li>
+<p><strong>Mobile first, responsive design is the goal.</strong> Bootstrap's CSS aims to apply the bare minimum of styles to make a layout work at the smallest breakpoint, and then layers on styles to adjust that design for larger devices. This optimizes your CSS, improves rendering time, and provides a great experience for your visitors.</p>
+</li>
+</ul>
+<h2>Available breakpoints</h2>
+<p>Bootstrap includes six default breakpoints, sometimes referred to as <em>grid tiers</em>, for building responsively. These breakpoints can be customized if you're using our source Sass files.</p>
+<p>{{&lt; bs-table &quot;table&quot; &gt;}}</p>
+<table>
+<thead>
+<tr>
+<th>Breakpoint</th>
+<th>Class infix</th>
+<th>Dimensions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extra small</td>
+<td>&lt;em&gt;None&lt;/em&gt;</td>
+<td>&lt;576px</td>
+</tr>
+<tr>
+<td>Small</td>
+<td><code>sm</code></td>
+<td>≥576px</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td><code>md</code></td>
+<td>≥768px</td>
+</tr>
+<tr>
+<td>Large</td>
+<td><code>lg</code></td>
+<td>≥992px</td>
+</tr>
+<tr>
+<td>Extra large</td>
+<td><code>xl</code></td>
+<td>≥1200px</td>
+</tr>
+<tr>
+<td>Extra extra large</td>
+<td><code>xxl</code></td>
+<td>≥1400px</td>
+</tr>
+</tbody>
+</table>
+<p>{{&lt; /bs-table &gt;}}</p>
+<p>Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. Breakpoints are also representative of a subset of common device sizes and viewport dimensions—they don't specifically target every use case or device. Instead, the ranges provide a strong and consistent foundation to build on for nearly any device.</p>
+<p>These breakpoints are customizable via Sass—you'll find them in a Sass map in our <code>_variables.scss</code> stylesheet.</p>
+<p>{{&lt; scss-docs name=&quot;grid-breakpoints&quot; file=&quot;scss/_variables.scss&quot; &gt;}}</p>
+<p>For more information and examples on how to modify our Sass maps and variables, please refer to [the Sass section of the Grid documentation]({{&lt; docsref &quot;/layout/grid#sass&quot; &gt;}}).</p>
+<h2>Media queries</h2>
+<p>Since Bootstrap is developed to be mobile first, we use a handful of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">media queries</a> to create sensible breakpoints for our layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.</p>
+<h3>Min-width</h3>
+<p>Bootstrap primarily uses the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.</p>
+<pre><code class="hljs scss"><span class="hljs-comment">// Source mixins</span>
+
+<span class="hljs-comment">// No media query necessary for xs breakpoint as it's effectively `@media (min-width: 0) { ... }`</span>
+<span class="hljs-keyword">@include</span> media-breakpoint-up(sm) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-up(md) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-up(lg) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-up(xl) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-up(xxl) { ... }
+
+<span class="hljs-comment">// Usage</span>
+
+<span class="hljs-comment">// Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint</span>
+<span class="hljs-selector-class">.custom-class</span> {
+  <span class="hljs-attribute">display</span>: none;
+}
+<span class="hljs-keyword">@include</span> media-breakpoint-up(sm) {
+  <span class="hljs-selector-class">.custom-class</span> {
+    <span class="hljs-attribute">display</span>: block;
+  }
+}
+</code></pre>
+<p>These Sass mixins translate in our compiled CSS using the values declared in our Sass variables. For example:</p>
+<pre><code class="hljs scss"><span class="hljs-comment">// X-Small devices (portrait phones, less than 576px)</span>
+<span class="hljs-comment">// No media query for `xs` since this is the default in Bootstrap</span>
+
+<span class="hljs-comment">// Small devices (landscape phones, 576px and up)</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">576px</span>) { ... }
+
+<span class="hljs-comment">// Medium devices (tablets, 768px and up)</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">768px</span>) { ... }
+
+<span class="hljs-comment">// Large devices (desktops, 992px and up)</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">992px</span>) { ... }
+
+<span class="hljs-comment">// X-Large devices (large desktops, 1200px and up)</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">1200px</span>) { ... }
+
+<span class="hljs-comment">// XX-Large devices (larger desktops, 1400px and up)</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">1400px</span>) { ... }
+</code></pre>
+<h3>Max-width</h3>
+<p>We occasionally use media queries that go in the other direction (the given screen size <em>or smaller</em>):</p>
+<pre><code class="hljs scss"><span class="hljs-comment">// No media query necessary for xs breakpoint as it's effectively `@media (max-width: 0) { ... }`</span>
+<span class="hljs-keyword">@include</span> media-breakpoint-down(sm) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-down(md) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-down(lg) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-down(xl) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-down(xxl) { ... }
+
+<span class="hljs-comment">// Example: Style from medium breakpoint and down</span>
+<span class="hljs-keyword">@include</span> media-breakpoint-down(md) {
+  <span class="hljs-selector-class">.custom-class</span> {
+    <span class="hljs-attribute">display</span>: block;
+  }
+}
+</code></pre>
+<p>These mixins take those declared breakpoints, subtract <code>.02px</code> from them, and use them as our <code>max-width</code> values. For example:</p>
+<pre><code class="hljs scss"><span class="hljs-comment">// `xs` returns only a ruleset and no media query</span>
+<span class="hljs-comment">// ... { ... }</span>
+
+<span class="hljs-comment">// `sm` applies to x-small devices (portrait phones, less than 576px)</span>
+<span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">575.98px</span>) { ... }
+
+<span class="hljs-comment">// `md` applies to small devices (landscape phones, less than 768px)</span>
+<span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">767.98px</span>) { ... }
+
+<span class="hljs-comment">// `lg` applies to medium devices (tablets, less than 992px)</span>
+<span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">991.98px</span>) { ... }
+
+<span class="hljs-comment">// `xl` applies to large devices (desktops, less than 1200px)</span>
+<span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">1199.98px</span>) { ... }
+
+<span class="hljs-comment">// `xxl` applies to x-large devices (large desktops, less than 1400px)</span>
+<span class="hljs-keyword">@media</span> (max-width: <span class="hljs-number">1399.98px</span>) { ... }
+</code></pre>
+<p>{{&lt; callout warning &gt;}}
+{{&lt; partial &quot;callout-info-mediaqueries-breakpoints.md&quot; &gt;}}
+{{&lt; /callout &gt;}}</p>
+<h3>Single breakpoint</h3>
+<p>There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.</p>
+<pre><code class="hljs scss"><span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(xs) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(sm) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(md) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(lg) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(xl) { ... }
+<span class="hljs-keyword">@include</span> media-breakpoint-<span class="hljs-keyword">only</span>(xxl) { ... }
+</code></pre>
+<p>For example the <code>@include media-breakpoint-only(md) { ... }</code> will result in :</p>
+<pre><code class="hljs scss"><span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">768px</span>) <span class="hljs-keyword">and</span> (max-width: <span class="hljs-number">991.98px</span>) { ... }
+</code></pre>
+<h3>Between breakpoints</h3>
+<p>Similarly, media queries may span multiple breakpoint widths:</p>
+<pre><code class="hljs scss"><span class="hljs-keyword">@include</span> media-breakpoint-between(md, xl) { ... }
+</code></pre>
+<p>Which results in:</p>
+<pre><code class="hljs scss"><span class="hljs-comment">// Example</span>
+<span class="hljs-comment">// Apply styles starting from medium devices and up to extra large devices</span>
+<span class="hljs-keyword">@media</span> (min-width: <span class="hljs-number">768px</span>) <span class="hljs-keyword">and</span> (max-width: <span class="hljs-number">1199.98px</span>) { ... }
+</code></pre>
+
+      </div>
+    </div>
+  </body>
+</html>

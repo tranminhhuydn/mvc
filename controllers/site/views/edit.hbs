@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <title>Download Site</title>
+</head>
+<body>
+  <h1>{{user.name}}</h1>
+  <form action="/site/0?_method=put" method="post">
+    <label for="site[address]">Site address:
+      <input type="text" name="site[address]" value="{{user.name}}">
+    </label>
+
+    <input type="submit" name="submit" value="Update">
+  </form>
+</body>
+</html>

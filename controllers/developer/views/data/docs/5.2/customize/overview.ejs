@@ -1,0 +1,46 @@
+<hr>
+<p>layout: docs
+title: Customize
+description: Learn how to theme, customize, and extend Bootstrap with Sass, a boatload of global options, an expansive color system, and more.
+group: customize
+toc: false
+aliases: &quot;/docs/5.2/customize/&quot;
+sections:</p>
+<ul>
+<li>title: Sass
+description: Utilize our source Sass files to take advantage of variables, maps, mixins, and functions.</li>
+<li>title: Options
+description: Customize Bootstrap with built-in variables to easily toggle global CSS preferences.</li>
+<li>title: Color
+description: Learn about and customize the color systems that support the entire toolkit.</li>
+<li>title: Components
+description: Learn how we build nearly all our components responsively and with base and modifier classes.</li>
+<li>title: CSS variables
+description: Use Bootstrap's CSS custom properties for fast and forward-looking design and development.</li>
+<li>title: Optimize
+description: Keep your projects lean, responsive, and maintainable so you can deliver the best experience.</li>
+</ul>
+<hr>
+<h2>Overview</h2>
+<p>There are multiple ways to customize Bootstrap. Your best path can depend on your project, the complexity of your build tools, the version of Bootstrap you're using, browser support, and more.</p>
+<p>Our two preferred methods are:</p>
+<ol>
+<li>Using Bootstrap [via package manager]({{&lt; docsref &quot;/getting-started/download#package-managers&quot; &gt;}}) so you can use and extend our source files.</li>
+<li>Using Bootstrap's compiled distribution files or [jsDelivr]({{&lt; docsref &quot;/getting-started/download#cdn-via-jsdelivr&quot; &gt;}}) so you can add onto or override Bootstrap's styles.</li>
+</ol>
+<p>While we cannot go into details here on how to use every package manager, we can give some guidance on [using Bootstrap with your own Sass compiler]({{&lt; docsref &quot;/customize/sass&quot; &gt;}}).</p>
+<p>For those who want to use the distribution files, review the [getting started page]({{&lt; docsref &quot;/getting-started/introduction&quot; &gt;}}) for how to include those files and an example HTML page. From there, consult the docs for the layout, components, and behaviors you'd like to use.</p>
+<p>As you familiarize yourself with Bootstrap, continue exploring this section for more details on how to utilize our global options, making use of and changing our color system, how we build our components, how to use our growing list of CSS custom properties, and how to optimize your code when building with Bootstrap.</p>
+<h2>CSPs and embedded SVGs</h2>
+<p>Several Bootstrap components include embedded SVGs in our CSS to style components consistently and easily across browsers and devices. <strong>For organizations with more strict &lt;abbr title=&quot;Content Security Policy&quot;&gt;CSP&lt;/abbr&gt; configurations</strong>, we've documented all instances of our embedded SVGs (all of which are applied via <code>background-image</code>) so you can more thoroughly review your options.</p>
+<ul>
+<li>[Accordion]({{&lt; docsref &quot;/components/accordion&quot; &gt;}})</li>
+<li>[Carousel controls]({{&lt; docsref &quot;/components/carousel#with-controls&quot; &gt;}})</li>
+<li>[Close button]({{&lt; docsref &quot;/components/close-button&quot; &gt;}}) (used in alerts and modals)</li>
+<li>[Form checkboxes and radio buttons]({{&lt; docsref &quot;/forms/checks-radios&quot; &gt;}})</li>
+<li>[Form switches]({{&lt; docsref &quot;/forms/checks-radios#switches&quot; &gt;}})</li>
+<li>[Form validation icons]({{&lt; docsref &quot;/forms/validation#server-side&quot; &gt;}})</li>
+<li>[Navbar toggle buttons]({{&lt; docsref &quot;/components/navbar#responsive-behaviors&quot; &gt;}})</li>
+<li>[Select menus]({{&lt; docsref &quot;/forms/select&quot; &gt;}})</li>
+</ul>
+<p>Based on <a href="https://github.com/twbs/bootstrap/issues/25394">community conversation</a>, some options for addressing this in your own codebase include replacing the URLs with locally hosted assets, removing the images and using inline images (not possible in all components), and modifying your CSP. Our recommendation is to carefully review your own security policies and decide on the best path forward, if necessary.</p>

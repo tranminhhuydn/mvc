@@ -1,0 +1,24 @@
+{
+	"footer": {
+		"Site-name": "blog 5 khong the",
+		"Email": "blog-5.1@gmail.com"
+	},
+	"route": {
+		"user": "user",
+		"site":"s",
+		"articles": "a",
+		"categoties": "c"
+	},
+	"role":["admin","manager","poster","basic"],
+	"accessRole":{
+		"user":{
+			"admin":["admin","poster","basic","public"]
+		},
+		"setting":{
+			"setting":["admin","manager","poster","basic","public"]
+		},
+		"a":{
+			"index":["admin","manager","poster","basic","public"]
+		}
+	}
+}
