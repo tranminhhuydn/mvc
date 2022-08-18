@@ -144,10 +144,10 @@ app.get('/:parent/:farther/:child', slug);
 //var port = 4201
 var port = process.env.PORT || 3000
     server = app.listen(port, function() {
-        socket = require('./middleware/boot-socket')
-            // load sockets
-        var ioApp = socket(server, app, {
-            verbose: !module.parent
-        })
+        // socket = require('./middleware/boot-socket')
+        //     // load sockets
+        // var ioApp = socket(server, app, {
+        //     verbose: !module.parent
+        // })
         console.log('Server started on port %s...', port);
     });
