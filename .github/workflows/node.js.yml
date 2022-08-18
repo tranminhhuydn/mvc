@@ -38,7 +38,7 @@ jobs:
         username:${{secrets.GOOLE_CLOUND_VM_USERNAME}}
         script:|
         pm2 delete all
-        cd var/app/gh-page
+        cd var/app/mvc
         git pull
         npm install
         pm2 start npm -- start
