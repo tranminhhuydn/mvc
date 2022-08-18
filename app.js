@@ -142,7 +142,7 @@ app.get('/:parent/:farther/:child', slug);
 
 // Start Server
 //var port = 4201
-var port = 3000,
+var port = process.env.PORT || 3000
     server = app.listen(port, function() {
         socket = require('./middleware/boot-socket')
             // load sockets
