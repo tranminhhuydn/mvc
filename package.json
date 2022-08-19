@@ -32,6 +32,7 @@
     "express-messages": "^1.0.1",
     "express-session": "^1.15.3",
     "express-validator": "^3.2.1",
+    "github-markdown": "^3.2.0",
     "html-entities": "^2.3.2",
     "i18next": "^20.2.2",
     "i18next-fs-backend": "^1.1.1",
