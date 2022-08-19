@@ -28,17 +28,17 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - name: SSH Remote Commands
+   # - name: SSH Remote Commands
       # You may pin to the exact commit or the version.
       # uses: appleboy/ssh-action@f9010ff7f1bbd7db1a0b4bab661437550cea20c0
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        key:${{secrets.GOOLE_CLOUND_VM_SSH}}
-        host:${{secrets.GOOLE_CLOUND_VM_IP}}
-        username:${{secrets.GOOLE_CLOUND_VM_USERNAME}}
-        script:|
-        pm2 delete all
-        cd var/app/mvc
-        git pull
-        npm install
-        pm2 start npm -- start
+    #  uses: appleboy/ssh-action@v0.1.5
+     # with:
+     #   key:${{secrets.GOOLE_CLOUND_VM_SSH}}
+    #    host:${{secrets.GOOLE_CLOUND_VM_IP}}
+    #    username:${{secrets.GOOLE_CLOUND_VM_USERNAME}}
+    #    script:|
+    #    pm2 delete all
+     #   cd var/app/mvc
+      #  git pull
+       # npm install
+       # pm2 start npm -- start
