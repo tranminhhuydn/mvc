@@ -14,7 +14,7 @@ exports.add = function(req, res, next) {
         } = req.body
         filename = filename.trim().toLowerCase().replace(/\s+/g, '-')
         console.log(filename);
-        fs.writeFileSync(__dirname + '/views/data/' + filename + '.ejs', content);
+        fs.writeFileSync(__dirname + '/views/data/' + filename + '.md', content);
         return res.redirect('/developer/add')
 
     }
