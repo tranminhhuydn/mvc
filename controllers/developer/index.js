@@ -50,7 +50,8 @@ exports.docs = function(req, res, next) {
     res.locals.partialLeft = __dirname + '/views/partials/boostrap-v5-slider-left'
     if (req.query.v) {
         var val = req.query.v
-        var p = /\/([0-9\.]+)\/(\w+)\/([\w-\-]+)/g.exec(req.query.v)
+        var p = /\/([0-9\.]+)\/([\w\-]+)\/([\w-\-]+)/g.exec(val)
+        console.log(val)
         console.log(p)
         val = p[0]
         var version = p[1],
