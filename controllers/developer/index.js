@@ -60,11 +60,11 @@ exports.docs = function(req, res, next) {
         console.log('   val: %s', val)
         if (fs.existsSync(__dirname + '/views/data/docs' + val + '.md')) {
             
-            const ghmd = require('github-markdown');
-            var buffer = fs.readFileSync(__dirname + '/views/data/docs' + val + '.md');
-            const markdown = buffer.toString();
-            const data = ghmd(markdown);
-            fs.writeFileSync(__dirname + '/views/data/docs' + val + '.ejs', data, 'utf8');
+            //const ghmd = require('github-markdown');
+            var data = fs.readFileSync(__dirname + '/views/data/docs' + val + '.md');
+            // const markdown = buffer.toString();
+            // data = ghmd(markdown);
+            fs.writeFileSync(__dirname + '/views/data/docs' + val + '.ejs', data.toString(), 'utf8');
 
 
             // var MarkdownIt = require('markdown-it'),
