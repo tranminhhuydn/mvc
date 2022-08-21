@@ -61,6 +61,8 @@ exports.index = function(req, res, next) {
 exports.list = function(req, res, next) {
     //console.log(dir) 
     var dir = rootDir
+    if (!fs.existsSync(dir))
+        fs.mkdirSync(dir)
     var 
     val={
         mainLayoutType:"doc",
