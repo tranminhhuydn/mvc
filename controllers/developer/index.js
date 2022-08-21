@@ -2,6 +2,7 @@ var
     fs = require('fs'),
     path = require('path'),
     rootDir = __dirname + '/views/dist/'
+var sysConfig = require('dotenv').config()
 
 exports.before = function(req, res, next) {
     next()
@@ -70,7 +71,8 @@ exports.list = function(req, res, next) {
         partialLeft: __dirname + '/views/partials/boostrap-v5-slider-left',
         subDir: '',
         list: fs.readdirSync(dir),
-        path:path
+        path:path,
+        sysConfig:sysConfig
     }
     if (req.query.d) {
         dir = dir +req.query.d+'/'
