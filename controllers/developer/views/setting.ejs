@@ -1,0 +1,78 @@
+<style type="text/css" media="screen">
+    #editor{
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+        direction: ltr;
+        text-align: left;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+</style>
+<div class="bd-content ps-lg-4">
+    <!-- <%=JSON.stringify(locals.setting)%> -->
+    <!-- <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"><%=t("Setting")%></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Show code</a>
+        </li>
+      </ul> -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><%=t("Setting")%></button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Show code</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <form id="fromSetting" class="needs-validation" action="/developer/setting" method="post">
+            <%- include(__dirname+"/views/partials/setting.tree.ejs") -%>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <form id="formSettingByCode" class="form-horizontal" method="post" action="/developer/setting">
+              <input type="hidden" id = "type" name="bycode" value="true"/>
+              <input type="hidden" id = "result" name="result"/>
+              <pre id="editor" style="height: 424px;" class=" ace_editor ace-tm" draggable="false"><%=JSON.stringify(setting,null,"\t")%></pre>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </form>
+        </div>
+      </div>
+    
+</div>
+<script src="/websocket/d.js"></script>
+<script src="/ace/build/src/ace.js"></script>
+<script src="/ace/build/src/ext-static_highlight.js"></script>
+
+
+
+<script>
+    d.init(()=>{
+        fromSetting.onsubmit=(event)=>{
+            //event.preventDefault()
+            var list = d.qAll('input[type=checkbox]')
+            //console.log(list)
+            list.forEach(i=>{
+                    i.value= i.checked?true:false
+                    console.log("name %s, value %s",i.name,i.value)
+            })
+           // return false;
+        }
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/javascript");
+        formSettingByCode.onsubmit = function(){
+            result.value = editor.getValue()
+            //alert(editor.getValue())
+            //alert(result.value)
+        }
+
+    })
+</script>

@@ -10,26 +10,31 @@ var path = require('path');
 module.exports = function(parent, options) {
     var dir = path.join(__dirname, '..', 'controllers');
     var verbose = options.verbose;
-    var routeController = (obj,app,verbose,urlRoute,handler,key) => {
+    var routeController = (obj,app,verbose,urlRoute,handler,fnStr) => {
         // before middleware support
         var methods = ['checkout','copy','delete','get','head','lock','merge','mkactivity','mkcol','move','m-search','notify','options','patch','post','purge','put','report','search','subscribe','trace','unlock','unsubscribe'];
 
         if (obj.before) {
-            // app['get'](urlRoute, obj.before, handler);
-            // app['post'](urlRoute, obj.before, handler);
             methods.forEach(m=>{
-                app[m](urlRoute, obj.before, handler);
-                //console.log(m)
+                if(obj.middleware && obj.middleware[fnStr]){
+                    app[m](urlRoute, obj.middleware[fnStr], obj.before, handler);
+                }else{
+                    app[m](urlRoute, obj.before, handler)
+                }
             })
-            verbose && console.log('     %s -> before -> %s', urlRoute, key);
+            verbose && console.log('     %s -> before -> %s', urlRoute, fnStr);
         } else {
-            // app['get'](urlRoute, handler);
-            // app['post'](urlRoute, handler);
             methods.forEach(m=>{
                 app[m](urlRoute, handler);
-                //console.log(m)
             })
-            verbose && console.log('     %s -> %s', urlRoute, key);
+            methods.forEach(m=>{
+                if(obj.middleware && obj.middleware[fnStr]){
+                    app[m](urlRoute, obj.middleware[fnStr], handler);
+                }else{
+                    app[m](urlRoute, handler)
+                }
+            })
+            verbose && console.log('     %s -> %s', urlRoute, fnStr);
         }
     }
     fs.readdirSync(dir).forEach(function(name) {

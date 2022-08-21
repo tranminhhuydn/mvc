@@ -1,0 +1,26 @@
+{
+	"show option": {
+		"decription": "Show option",
+		"value": true,
+		"childs": {
+			"email": {
+				"decription": "Show email post",
+				"value": true,
+				"childs": {
+					"ping": {
+						"decription": "Show ping when data com",
+						"value": false
+					}
+				}
+			},
+			"username": {
+				"decription": "Show user name",
+				"value": true
+			}
+		}
+	},
+	"date": {
+		"decription": "Show date post",
+		"value": true
+	}
+}

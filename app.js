@@ -1,4 +1,5 @@
 const
+    fs = require('fs'),
     express = require('express'),
     path = require('path'),
     expressValidator = require('express-validator'),
@@ -18,6 +19,12 @@ const
 //database connection
 //connectDB();
 //console.log(config);
+
+// settup setting.json
+if(!fs.existsSync("config/setting.json")){
+    var data = fs.readFileSync("config/setting.default.json")
+    fs.writeFileSync("config/setting.json",data)
+}
 
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 const initSession = session({

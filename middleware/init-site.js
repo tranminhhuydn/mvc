@@ -7,43 +7,12 @@ var {
 } = require('../models/user');
 
 exports.iniSite = function(req, res, next) {
-    
-    res.locals.MAINMENU = [
-    {
-        text: 'Bootstrap 5.2',
-        url: '/developer/docs'
-    }, {
-        text: '4.x API',
-        url: '/developer/express4xAPI'
-    }, {
-        text: 'news',
-        url: '/a/index'
-    }, {
-        text: 'Admin',
-        url: '/user/admin'
-    }, {
-        text: 'login',
-        url: '/user/login'
-    }, {
-        text: 'Setting',
-        url: '/setting/setting'
-    }, {
-        text: 'stardict',
-        url: '/stardict'
-    },{
-        text: 'site',
-        url: '/site'
-    }, {
-        text: 'download docs',
-        url: '/site/downloadDdocs'
-    }, {
-        text: 'websocket',
-        url: '/chats/websocket'
-    }
-    ]
-
+  
     res.locals.config = JSON.parse(fs.readFileSync('./config/setting.json', 'utf8'));
 
+    var {config} = res.locals
+    //console.log(res.locals.config.MAINMENU);
+ 
     res.locals.title = "home"
         //res.locals.csrf = req.csrfToken()
 
@@ -53,7 +22,16 @@ exports.iniSite = function(req, res, next) {
     res.locals.form.url = req.url
 
     //:todo i18n
-    req.t = function(str) {
+    //auto add if key not in original lang
+    res.locals.t = req.t = function(str) {
+        if(config.deploy==false){
+            var en = fs.readFileSync("./locales/en/translation.json")
+            en = JSON.parse(en)
+            if(!en[str]){
+                en[str] = str
+                fs.writeFileSync("./locales/en/translation.json",JSON.stringify(en,null,"\t"))
+            }
+        }
         return str;
     }
 
@@ -101,7 +79,7 @@ exports.iniSite = function(req, res, next) {
         //console.log('-----------layout',res.locals.layout )
         res.locals.view = app.get('views') + '/' + view
         var layout = res.locals.layout=='../views/layout'? 'layout.doc.ejs': res.locals.layout
-            console.log('-----------layout',layout )
+            //console.log('-----------layout',layout )
             // console.log('view',res.locals.view )
             // render
         app.render(layout, opts, done);
