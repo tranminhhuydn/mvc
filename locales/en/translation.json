@@ -64,5 +64,8 @@
 	"not alowed": "not alowed",
 	"file not found": "file not found",
 	"This file already exists": "This file already exists",
-	"File has save": "File has save"
+	"File has save": "File has save",
+	"You are ready login": "You are ready login",
+	"Login unsuccess full": "Login unsuccess full",
+	"User logout": "User logout"
 }

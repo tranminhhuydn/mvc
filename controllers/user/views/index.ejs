@@ -1,8 +1,6 @@
   <h4>User</h4>
-   <form action="/articles" method="post">
-    <label for="site[address]">Site Address:
-      <input type="text" name="site[address]" placeholder="Site Address">
-    </label>
+  <a href="/user/logout">Sign Out</a>  
+  <h1>Hi <%=user.name %></h1>
+  <h1>email <%=user.email %></h1>
 
-    <input type="submit" name="submit" value="Download">
-  </form>
+  <img src="<%=user.picture%>" alt="">

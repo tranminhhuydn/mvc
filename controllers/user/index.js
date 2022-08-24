@@ -1,47 +1,40 @@
 var fs = require('fs');
 var path = require('path');
 
+    
 exports.before = function(req, res, next) {
     res.locals.title = 'User'
-
-    
     next();
 };
 
 exports.index = function(req, res) {
-    res.render('index')
+    let token = req.cookies['session-token'];
+    res.render('index',{user:token})
 };
 exports.login = function(req, res) {
     //POST
-    //if (Object.keys(req.body).length != 0) {
     if (req.method=='POST') {
-        var {
-            email,
-            password
-        } = req.body
-        if (email == 'admin@gmail.com' && password == '12345') {
-            req.body.role = 'manager'
-            req.session.user = req.body
-
-            req.flash('success', req.t('Login success full'))
-            return res.redirect('/user')
-        }
-        req.flash('danger', req.t('Login unsuccess full'))
-        return res.redirect(res.locals.form.url)
+        let token = req.body.token;
+        token.role = 'manager'
+        req.session.user = token
+        res.cookie('session-token', token);
+        return res.send('success')
     }
     //GET
-    if (req.session.user != null) {
-        req.flash('danger', req.t('You are ready login'))
-        return res.redirect('/user')
+    if (req.method=='GET') {
+        if (req.session.user != null || req.cookies['session-token']!=null) {
+            req.flash('danger', req.t('You are ready login'))
+            return res.redirect('/user')
+        }
+        res.locals.title = req.t('User-login')
+        return res.render('login2')
     }
-    res.locals.title = req.t('User-login')
-    return res.render('login')
 };
 
 exports.logout = function(req, res) {
+    res.clearCookie('session-token');
     req.session.user = null
-    req.flash('success', req.t('User logout'))
-    return res.redirect('/user')
+    return res.redirect('/')
 };
 
 exports.test = function(req, res) {

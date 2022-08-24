@@ -3,7 +3,8 @@ var
     path = require('path'),
     rootDir = __dirname + '/views/dist/'
 var sysConfig = require('dotenv').config()
-
+//extract-zip //zip-folder //search-in-file //node-directory-search
+var routeParam={}
 exports.before = function(req, res, next) {
     next()
 };
@@ -52,13 +53,16 @@ exports.setting = function(req, res, next) {
     res.render('setting')
 }
 exports.index = function(req, res, next) {
-    res.locals.mainLayoutType = 'doc'
-    res.locals.title = 'docs home'
-
-    res.locals.partialLeft = __dirname + '/views/partials/boostrap-v5-slider-left'
-    res.locals.testShow = req.t("test auto add original languge")
-    res.render('index')
+    var 
+    val={
+        //mainLayoutType:"doc",
+        title: "docs home",
+        //partialLeft: __dirname + '/views/partials/boostrap-v5-slider-left',
+        testShow: req.t("test auto add original languge")
+    }
+    res.render('index',val)
 }
+
 exports.list = function(req, res, next) {
     //console.log(dir) 
     var dir = rootDir
@@ -66,15 +70,17 @@ exports.list = function(req, res, next) {
         fs.mkdirSync(dir)
     var 
     val={
-        mainLayoutType:"doc",
         title: "list",
-        partialLeft: __dirname + '/views/partials/boostrap-v5-slider-left',
         subDir: '',
         list: fs.readdirSync(dir),
         path:path,
         sysConfig:sysConfig
     }
-    if (req.query.d) {
+    if(req.params)
+         req.query.d = req.params[0] 
+    if(req.query.d) {
+        val.mainLayoutType = "doc"
+        val.partialLeft = __dirname + '/views/partials/list-slider-left'
         dir = dir +req.query.d+'/'
         val.subDir = req.query.d+'/'
         val.list = fs.readdirSync(dir)
@@ -84,14 +90,22 @@ exports.list = function(req, res, next) {
 exports.add = function(req, res, next) {
     var dir = rootDir
     res.locals.body = {filename:'',content:''}
+    if(req.params)
+        req.query.d = req.params[0] 
     if (req.query.d) {
         res.locals.body.filename = req.query.d
+        var stat = fs.statSync(dir + res.locals.body.filename)
+        //console.log()
+        //return res.send(JSON.stringify(stat,null,"\t"))
+        if (stat.isFile() && fs.existsSync(dir + res.locals.body.filename))
+        res.locals.body.content = fs.readFileSync(dir + res.locals.body.filename)
     } 
 
     if (req.method == 'POST') {
         var {
             filename,
-            content
+            content,
+            overWrite,
         } = req.body
         filename = filename.trim().toLowerCase().replace(/\s+/g, '-')
         var arrStr = filename.split('/')
@@ -108,7 +122,7 @@ exports.add = function(req, res, next) {
         if(!extname)
             filename+='.md'
         console.log(filename);
-        if (!fs.existsSync(dir + filename )){ 
+        if (!fs.existsSync(dir + filename )|| overWrite=='true'){ 
             fs.writeFileSync(dir + filename , content);
             req.flash('success', req.t('File has save'))
             return res.redirect('/developer/add')
@@ -125,8 +139,7 @@ exports.add = function(req, res, next) {
 
     res.render('add')
 };
-
-exports.docs = function(req, res, next) {
+exports.view = function(req, res, next) {
 
     var dir = rootDir
     // app.engine('md', function(path, options, fn){
@@ -148,7 +161,20 @@ exports.docs = function(req, res, next) {
     res.locals.title = 'docs'
 
     res.locals.partialLeft = __dirname + '/views/partials/boostrap-v5-slider-left'
+    
+    if(req.params)
+        req.query.v = req.params[0]
+    
     if (req.query.v) {
+        var subDir = req.params[0].split('/')
+        subDir.pop()
+        subDir = subDir.join('/')
+        res.locals.mainLayoutType = "doc"
+        res.locals.partialLeft = __dirname + '/views/partials/list-slider-left'
+        res.locals.list = fs.readdirSync(rootDir+subDir)
+        res.locals.path = path
+        res.locals.subDir = subDir+'/'
+
         var version,chapter,page, val = req.query.v
         var p = /\/([0-9\.]+)\/([\w\-]+)\/([\w-\-]+)/g.exec(val)
         console.log(val)
@@ -160,32 +186,16 @@ exports.docs = function(req, res, next) {
             page = p[3]
         }
         val = val[0]!='/'?'/'+val:val
-        console.log('   page: %s', page)
-        console.log('   val: %s', val)
         if (fs.existsSync(dir + val)) {
             
-            //const ghmd = require('github-markdown');
-            //var data = fs.readFileSync(dir + val + '.md');
-            // const markdown = buffer.toString();
-            // data = ghmd(markdown);
-            //fs.writeFileSync(dir + val + '.md', data.toString(), 'utf8');
-
-
-            // var MarkdownIt = require('markdown-it'),
-            //     md = new MarkdownIt();
-
-            //var content = fs.readFileSync(dir + val + '.md','utf8');
-            // var data = md.render(content)
-            // fs.writeFileSync(dir + val + '.ejs', data, 'utf8');
-            //return res.send(content)
             return res.render('/dist' + val)
 
         }
         req.flash('danger', req.t('file not found'))
-        return res.redirect('/developer/add?v=' + req.query.v)
+        return res.redirect('/developer/add/' + req.query.v)
     }
-
-    res.render('docs')
+    //return res.send(JSON.stringify(req.params))
+    res.render('view')
 };
 
 exports.express4xAPI = function(req, res, next) {

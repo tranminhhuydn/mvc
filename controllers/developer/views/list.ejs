@@ -24,24 +24,21 @@ showTree = (data)=>{
         <div class="container-fluid">
             <a href="/developer/list" class="navbar-brand"><h4>list</h4></a>
             <div class="d-flex">
-                <a class="btn btn-outline-success" href="/developer/add?d=<%=subDir%>">Add</a>
+                <a class="btn btn-outline-success" href="/developer/add/<%=subDir%>">Add</a>
             </div>
         </div>
     </nav>
     <ul>
         <% 
-        var exts = ['.html','.htm','.md','.js','.xml','.css']
+        var exts = ['.html','.htm','.md','.js','.xml','.css','.ejs']
         list.map(i=>{
             var basename = path.basename(i)
             ,extname = path.extname(i)
             if(exts.indexOf(extname)!=-1){%>
-                <li><a href="/developer/docs?v=<%=subDir+basename%>"><%=basename%></a></li>
+                <li><a href="/developer/view/<%=subDir+basename%>"><%=basename%></a></li>
             <%}else{ %>
-                <li><a href="?d=<%=subDir+i%>"><%=i%></a></li>
+                <li><a href="/developer/list/<%=subDir+i%>"><%=i%></a></li>
             <%} %>
         <%}) %>
     </ul>
-<%#JSON.stringify(sysConfig)%>
-<!-- process.env -->
-<%#JSON.stringify(process.env)%>
 </div>

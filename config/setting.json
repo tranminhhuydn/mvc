@@ -1,35 +1,44 @@
 {
-	"MAINMENU":[
+	"MAINMENU": [
 		{
-		   "text": "Booking",
-		    "url": "/developer/"
-		}, {
-		   "text": "4.x API",
-		    "url": "/developer/express4xAPI"
-		}, {
-		   "text": "news",
-		    "url": "/a/index"
-		}, {
-		   "text": "Admin",
-		    "url": "/user/admin"
-		}, {
-		   "text": "login",
-		    "url": "/user/login"
-		}, {
-		   "text": "Setting",
-		    "url": "/setting/setting"
-		}, {
-		   "text": "stardict",
-		    "url": "/stardict"
-		},{
-		   "text": "site",
-		    "url": "/site"
-		}, {
-		   "text": "download docs",
-		    "url": "/site/downloadDdocs"
-		}, {
-		   "text": "websocket",
-		    "url": "/chats/websocket"
+			"text": "Booking",
+			"url": "/developer/"
+		},
+		{
+			"text": "4.x API",
+			"url": "/developer/express4xAPI"
+		},
+		{
+			"text": "news",
+			"url": "/a/index"
+		},
+		{
+			"text": "Admin",
+			"url": "/user/admin"
+		},
+		{
+			"text": "login",
+			"url": "/user/login"
+		},
+		{
+			"text": "Setting",
+			"url": "/setting/setting"
+		},
+		{
+			"text": "stardict",
+			"url": "/stardict"
+		},
+		{
+			"text": "site",
+			"url": "/site"
+		},
+		{
+			"text": "download docs",
+			"url": "/site/downloadDdocs"
+		},
+		{
+			"text": "websocket",
+			"url": "/chats/websocket"
 		}
 	],
 	"footer": {
@@ -55,7 +64,20 @@
 				"poster",
 				"basic",
 				"public"
+			],
+			"index": [
+				"admin",
+				"manager",
+				"poster",
+				"basic"
+			],
+			"/": [
+				"admin",
+				"manager",
+				"poster",
+				"basic"
 			]
+			
 		},
 		"setting": {
 			"setting": [
@@ -66,9 +88,15 @@
 				"public"
 			]
 		},
-		"a":{
-			"index":["admin","manager","poster","basic","public"]
+		"a": {
+			"index": [
+				"admin",
+				"manager",
+				"poster",
+				"basic",
+				"public"
+			]
 		}
 	},
-	"deploy":false
+	"deploy": false
 }

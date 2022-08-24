@@ -1,0 +1,21 @@
+<ul class="list-unstyled mb-0 py-3 pt-md-1">
+
+    <li>
+        <a href="/developer/add" class="d-inline-flex align-items-center rounded">
+            Add docs
+        </a>
+    </li>
+    <li class="my-3 mx-4 border-top"></li>
+    <% 
+    var exts = ['.html','.htm','.md','.js','.xml','.css','.ejs']
+    list.map(i=>{
+        var basename = path.basename(i)
+        ,extname = path.extname(i)
+        if(exts.indexOf(extname)!=-1){%>
+            <li class="mb-1"><a href="/developer/view/<%=subDir+basename%>"><%=basename%></a></li>
+        <%}else{ %>
+            <li class="mb-1"><a href="/developer/list/<%=subDir+i%>"><%=i%></a></li>
+        <%} %>
+    <%}) %>
+			
+</ul>

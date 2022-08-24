@@ -1,0 +1,31 @@
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="/jwt-decode.js"></script>
+<script>
+function handleCredentialResponse(response) {
+    //alert('callback')
+    ///console.log("Encoded JWT ID token: " + response.credential);
+    token = jwt_decode(response.credential)
+    console.log(token);
+    var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/user/login');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+          if(xhr.responseText == 'success'){
+              location.assign('/user')
+          }
+      };
+      xhr.send(JSON.stringify({token : token}));
+}
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "563587575029-jk7upaett1dgftgi6fh7v9l3hlb01lbs.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+    document.getElementById("buttonDiv"),
+    { theme: "outline", size: "large" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+}
+</script>
+<div id="buttonDiv"></div> 

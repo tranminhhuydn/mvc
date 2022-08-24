@@ -5,6 +5,7 @@ const
     expressValidator = require('express-validator'),
     flash = require('connect-flash'),
     session = require('express-session'),
+    cookieParser = require('cookie-parser'),
     passport = require('passport'),
     config = require('dotenv').config(),
     //const connectDB = require('./config/database'),
@@ -16,9 +17,10 @@ const
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     app = express();
-//database connection
-//connectDB();
-//console.log(config);
+    
+    //database connection
+    //connectDB();
+    //console.log(config);
 
 // settup setting.json
 if(!fs.existsSync("config/setting.json")){
@@ -59,6 +61,8 @@ app
     .set('views', path.join(__dirname, 'views'))
     .set('view engine', 'ejs') // Load View Engine
 app
+    // .use(express.json())
+    .use(cookieParser()) // Set Public Folder
     .use(express.static(path.join(__dirname, 'public'))) // Set Public Folder
     .use(express.urlencoded({
         limit:'5000kb',
@@ -67,9 +71,7 @@ app
     .use(express.json()) // parse application/json
     .use(initSession) // Express Session Middleware
     .use(require('connect-flash')()) // Express Messages Middleware
-    // .use(bodyParser.urlencoded({
-    //     extended: false
-    // }));
+
 
 var {
     accessRole

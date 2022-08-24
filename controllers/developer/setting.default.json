@@ -9,7 +9,7 @@
 				"childs": {
 					"ping": {
 						"decription": "Show ping when data com",
-						"value": false
+						"value": true
 					}
 				}
 			},

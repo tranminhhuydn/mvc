@@ -4,8 +4,10 @@ if(messages.hide){
   body = messages.hide[0]
 }
 %>
-<form action="/developer/add" method="post">
-  <input type="submit" name="submit" value="Save">
+<form id="formAdd" action="/developer/add" method="post">
+  <input id="cmdsubmit" type="submit" name="submit" value="Save">
+  <input id="cmdOverWrite" type="button" name="submit" value="Over write">
+  <input id="overWrite" type="hidden" name="overWrite" value="false">
   <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">File Name:</label>
   <input type="text" name="filename" class="form-control" placeholder="File Name" value="<%=body.filename%>">
@@ -19,3 +21,14 @@ if(messages.hide){
   </div>
 </form>
 
+<script src="/websocket/d.js"></script>
+<script>
+
+  d.init(()=>{
+    cmdOverWrite.onclick = (event)=>{
+      overWrite.value=true
+      cmdsubmit.click()
+    }
+  })
+
+</script>

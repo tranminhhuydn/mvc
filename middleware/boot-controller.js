@@ -10,7 +10,7 @@ var path = require('path');
 module.exports = function(parent, options) {
     var dir = path.join(__dirname, '..', 'controllers');
     var verbose = options.verbose;
-    var routeController = (obj,app,verbose,urlRoute,handler,fnStr) => {
+    var routeController = (obj,app,urlRoute,handler,fnStr) => {
         // before middleware support
         var methods = ['checkout','copy','delete','get','head','lock','merge','mkactivity','mkcol','move','m-search','notify','options','patch','post','purge','put','report','search','subscribe','trace','unlock','unsubscribe'];
 
@@ -22,7 +22,7 @@ module.exports = function(parent, options) {
                     app[m](urlRoute, obj.before, handler)
                 }
             })
-            verbose && console.log('     %s -> before -> %s', urlRoute, fnStr);
+            console.log('     %s -> before -> %s', urlRoute, fnStr);
         } else {
             methods.forEach(m=>{
                 app[m](urlRoute, handler);
@@ -34,7 +34,7 @@ module.exports = function(parent, options) {
                     app[m](urlRoute, handler)
                 }
             })
-            verbose && console.log('     %s -> %s', urlRoute, fnStr);
+            console.log('     %s -> %s', urlRoute, fnStr);
         }
     }
     fs.readdirSync(dir).forEach(function(name) {
@@ -56,9 +56,10 @@ module.exports = function(parent, options) {
 
         // generate routes based
         // on the exported methods
+        var passSome = ['before','middleware','routeParam']
         for (var key in obj) {
-            //not route before
-            if(key=='before') continue;
+            //not route before middleware routeParam
+            if(passSome.indexOf(key)!=-1) continue;
             // setup
             handler = obj[key];
 
@@ -66,13 +67,15 @@ module.exports = function(parent, options) {
             name = config.route[name]?config.route[name]:name
 
             urlRoute = '/' + name + '/' + key;
-            
-            routeController(obj,app,verbose,urlRoute,handler,key)
+ 
+            routeController(obj,app,urlRoute,handler,key)
+            var subUrlRoute = urlRoute+'/*'
+            routeController(obj,app,subUrlRoute,handler,key)
             
             //route without index
             if (key == 'index') {
                 urlRoute = '/' + name;
-                routeController(obj,app,verbose,urlRoute,handler,key)
+                routeController(obj,app,urlRoute,handler,key)
             }
         }
         // mount the app
