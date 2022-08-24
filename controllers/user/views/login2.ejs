@@ -6,6 +6,7 @@ function handleCredentialResponse(response) {
     ///console.log("Encoded JWT ID token: " + response.credential);
     token = jwt_decode(response.credential)
     console.log(token);
+    
     var xhr = new XMLHttpRequest();
       xhr.open('POST', '/user/login');
       xhr.setRequestHeader('Content-Type', 'application/json');
@@ -18,7 +19,7 @@ function handleCredentialResponse(response) {
 }
 window.onload = function () {
     google.accounts.id.initialize({
-        client_id: "563587575029-jk7upaett1dgftgi6fh7v9l3hlb01lbs.apps.googleusercontent.com",
+        client_id: "563587575029-89224il8qt9bc2i5d3f15fucn6nutv0t.apps.googleusercontent.com",
         callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
