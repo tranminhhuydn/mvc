@@ -10,8 +10,9 @@ on:
 jobs:
   build:
 
-    runs-on: slef-hosted
-
+    #runs-on: slef-hosted
+    runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         node-version: [14.x]
